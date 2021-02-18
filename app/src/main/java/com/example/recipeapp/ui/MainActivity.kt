@@ -8,10 +8,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.recipeapp.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController:NavController
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +30,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         bottomNavigationView.setupWithNavController(navController)
-        setupActionBarWithNavController(navController,appBarConfiguration)
-
-
-
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
 

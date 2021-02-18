@@ -1,4 +1,4 @@
-package com.example.recipeapp
+package com.example.recipeapp.util
 
 class Constants{
     companion object{
