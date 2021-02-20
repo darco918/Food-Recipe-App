@@ -13,14 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipeapp.MainViewModel
 import com.example.recipeapp.R
 import com.example.recipeapp.adapters.RecipesAdapter
+import com.example.recipeapp.models.FoodRecipe
 import com.example.recipeapp.util.Constants.Companion.API_KEY
 import com.example.recipeapp.util.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
+
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
-    private lateinit var mView:View
-    private val mAdapter by lazy {RecipesAdapter()}
+    private lateinit var mView: View
+    private val mAdapter by lazy { RecipesAdapter() }
     private lateinit var mainViewModel: MainViewModel
 
 
@@ -28,7 +30,7 @@ class RecipesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mView =inflater.inflate(R.layout.fragment_recipes, container, false)
+        mView = inflater.inflate(R.layout.fragment_recipes, container, false)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         setUpRecyclerView()
@@ -37,8 +39,8 @@ class RecipesFragment : Fragment() {
         return mView
     }
 
-    private fun applyQueries(): HashMap<String,String>{
-        val queries: HashMap<String,String> = HashMap()
+    private fun applyQueries(): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
 
         queries["number"] = "50"
         queries["apiKey"] = API_KEY
@@ -50,36 +52,45 @@ class RecipesFragment : Fragment() {
         return queries
     }
 
-    private fun requestApiData(){
+    private lateinit var foodRecipes: FoodRecipe
+
+    private fun requestApiData() {
         mainViewModel.getRecipes(applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
-            when(response){
-                is NetworkResult.Succes ->{
+            when (response) {
+                is NetworkResult.Succes -> {
                     hideShimmerEffect()
-                    response.data?.let{mAdapter.setData(it)}
+                    response.data?.let { mAdapter.setData(it) }
+                    foodRecipes = response.data!!
+
+
                 }
-                is NetworkResult.Error ->{
+                is NetworkResult.Error -> {
                     hideShimmerEffect()
-                    Toast.makeText(requireContext(), response.message.toString(),Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                is NetworkResult.Loading ->{
+                is NetworkResult.Loading -> {
                     showShimmerEffect()
                 }
             }
         }
     }
 
-    private  fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         mView.recyclerview.adapter = mAdapter
         mView.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
     }
 
-    private fun showShimmerEffect(){
+    private fun showShimmerEffect() {
         mView.recyclerview.showShimmer()
     }
 
-    private fun hideShimmerEffect(){
+    private fun hideShimmerEffect() {
         mView.recyclerview.hideShimmer()
     }
 
