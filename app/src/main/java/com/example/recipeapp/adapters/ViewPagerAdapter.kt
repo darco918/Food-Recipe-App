@@ -1,23 +1,19 @@
 package com.example.recipeapp.adapters
 
+import android.os.Bundle
 import androidx.fragment.app.*
-import com.example.recipeapp.ui.fragments.viewpagerfragments.IngredientsFragment
-import com.example.recipeapp.ui.fragments.viewpagerfragments.InstructionsFragment
-import com.example.recipeapp.ui.fragments.viewpagerfragments.RecipeOverviewFragment
 
-class ViewPagerAdapter(
-    fragmentManager: FragmentManager
-) : FragmentPagerAdapter(fragmentManager) {
-    override fun getItem(position: Int): Fragment {
-        return when( position){
-            0 -> RecipeOverviewFragment.newInstance()
-            1 -> IngredientsFragment.newInstance()
-            2 -> InstructionsFragment.newInstance()
-            else ->RecipeOverviewFragment.newInstance()
+class ViewPagerAdapter(private val resultBundle: Bundle,
+                       private val fragments: ArrayList<Fragment>,
+                       fm: FragmentManager
+): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        }
+    override fun getCount(): Int {
+        return fragments.size
     }
 
-    override fun getCount() = 3
-
+    override fun getItem(position: Int): Fragment {
+        fragments[position].arguments = resultBundle
+        return fragments[position]
+    }
 }

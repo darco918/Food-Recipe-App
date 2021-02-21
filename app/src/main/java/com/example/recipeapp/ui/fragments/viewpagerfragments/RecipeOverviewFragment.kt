@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import coil.load
 import com.example.recipeapp.R
-
+import com.example.recipeapp.models.Result
+import kotlinx.android.synthetic.main.fragment_recipe_overview.view.*
+import org.jsoup.Jsoup
 
 class RecipeOverviewFragment : Fragment() {
 
@@ -14,17 +18,30 @@ class RecipeOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe_overview, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_recipe_overview, container, false)
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            RecipeOverviewFragment().apply {
-                arguments = Bundle().apply {
+        val args = arguments
+        val myBundle: Result? = args?.getParcelable("recipeBundle")
 
-                }
-            }
+        view.main_imageView.load(myBundle?.image)
+        view.title_textView.text = myBundle?.title
+        view.likes_textView.text = myBundle?.aggregateLikes.toString()
+        view.time_textView.text = myBundle?.readyInMinutes.toString()
+        myBundle?.summary.let {
+            val summary = Jsoup.parse(it).text()
+            view.summary_textView.text = summary
+        }
+
+        if(myBundle?.vegan == true){
+            view.vegan_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
+            view.vegan_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        }
+
+        if(myBundle?.veryHealthy == true){
+            view.healthy_imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
+            view.healthy_textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        }
+
+        return view
     }
 }
