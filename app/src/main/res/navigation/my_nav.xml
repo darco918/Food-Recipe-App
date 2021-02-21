@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_recipesFragment_to_recipeDetailsActivity"
             app:destination="@id/recipeDetailsActivity" />
+        <action
+            android:id="@+id/action_recipesFragment_to_favoriteRecipesFragment"
+            app:destination="@id/favoriteRecipesFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"

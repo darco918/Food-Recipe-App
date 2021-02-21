@@ -4,10 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
- >
-
-
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/main_imageView"
         android:layout_width="0dp"
@@ -116,9 +113,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_checked"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/vegan_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/vegan_imageView"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/vegan_imageView"
+        app:layout_constraintStart_toEndOf="@+id/vegan_textView"
+        app:layout_constraintTop_toTopOf="@+id/vegan_textView"
         app:tint="@color/darkGray" />
 
     <TextView
@@ -129,23 +127,18 @@
         android:text="@string/healthy"
         android:textColor="@color/darkGray"
         app:layout_constraintBottom_toBottomOf="@+id/healthy_imageView"
-        app:layout_constraintStart_toEndOf="@+id/healthy_imageView"
-        app:layout_constraintTop_toTopOf="@+id/healthy_imageView" />
-
-
+        app:layout_constraintStart_toEndOf="@+id/healthy_imageView" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="38dp"
             app:layout_constraintTop_toBottomOf="@+id/healthy_imageView"
             android:orientation="vertical">
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/healthy_imageView"
                 android:layout_height="wrap_content">
 

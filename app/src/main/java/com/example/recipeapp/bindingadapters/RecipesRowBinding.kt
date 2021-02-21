@@ -1,7 +1,9 @@
 package com.example.recipeapp.bindingadapters
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +13,10 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.recipeapp.R
 import com.example.recipeapp.models.Result
+import com.example.recipeapp.ui.MainActivity
 import com.example.recipeapp.ui.fragments.recipes.RecipesFragmentDirections
+import com.example.recipeapp.util.ModelPreferencesManager
+import com.google.gson.GsonBuilder
 import org.jsoup.Jsoup
 
 class RecipesRowBinding {
@@ -32,6 +37,7 @@ class RecipesRowBinding {
                 }
             }
         }
+
 
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
