@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import com.example.recipeapp.R
-
+import com.example.recipeapp.models.Result
+import kotlinx.android.synthetic.main.fragment_instructions.view.*
 
 class InstructionsFragment : Fragment() {
     override fun onCreateView(
@@ -14,25 +16,16 @@ class InstructionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_instructions, container, false)
+        val view = inflater.inflate(R.layout.fragment_instructions, container, false)
+
+        val args = arguments
+        val myBundle: Result? = args?.getParcelable("recipeBundle")
+
+        view.instruction_webView.webViewClient = object : WebViewClient(){}
+        val websiteUrl : String =myBundle!!.sourceUrl
+        view.instruction_webView.loadUrl(websiteUrl)
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InstructionsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() =
-            InstructionsFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }
