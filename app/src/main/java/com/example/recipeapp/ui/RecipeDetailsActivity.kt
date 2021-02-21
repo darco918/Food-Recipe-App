@@ -17,14 +17,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_recipe_details)
 
         val recipe = intent.getStringArrayListExtra("recipe")
-
-
         Log.d("recipe", recipe?.get(0).toString())
-
-
-        val fragments: ArrayList<Fragment> =
-            arrayListOf(RecipeOverviewFragment(), IngredientsFragment(), InstructionsFragment())
-
 
         val viewpager = findViewById<androidx.viewpager.widget.ViewPager>(R.id.viewPagerDetailsActivity)
         val mAdapter = ViewPagerAdapter(supportFragmentManager)

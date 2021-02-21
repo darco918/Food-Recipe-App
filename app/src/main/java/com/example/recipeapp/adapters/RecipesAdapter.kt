@@ -44,35 +44,16 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentRecipe = recipes[position]
         holder.bind(currentRecipe)
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context,RecipeDetailsActivity::class.java)
-
-            val list = arrayListOf<String>("samsung","apple","test")
-            intent.putStringArrayListExtra("recipe", list)
-            holder.itemView.context.startActivity(intent)
-
-        }
-
-    }
-
-    private fun putExtrasInIntent(intent: Intent,currentRecipe:Result){
-        intent.putExtra("aggregateLikes",currentRecipe.aggregateLikes)
-       // intent.putExtra("extendedIngredients",currentRecipe.extendedIngredients)
-        intent.putExtra("id",currentRecipe.id)
-        intent.putExtra("image",currentRecipe.image)
-        intent.putExtra("readyInMinutes",currentRecipe.readyInMinutes)
-        intent.putExtra("sourceUrl",currentRecipe.sourceUrl)
-        intent.putExtra("summary",currentRecipe.summary)
-        intent.putExtra("title",currentRecipe.aggregateLikes)
-        intent.putExtra("aggregateLikes",currentRecipe.title)
-        intent.putExtra("vegan",currentRecipe.vegan)
-        intent.putExtra("veryHealthy",currentRecipe.veryHealthy)
-        intent.putExtra("aggregateLikes",currentRecipe.aggregateLikes)
-        intent.putExtra("aggregateLikes",currentRecipe.aggregateLikes)
-        intent.putExtra("aggregateLikes",currentRecipe.aggregateLikes)
-
+//        holder.itemView.setOnClickListener {
+//            val intent = Intent(holder.itemView.context,RecipeDetailsActivity::class.java)
+//            val list = arrayListOf<String>("samsung","apple","test")
+//            intent.putStringArrayListExtra("recipe", list)
+//            holder.itemView.context.startActivity(intent)
+//
+//        }
 
     }
+
 
     override fun getItemCount(): Int {
         return recipes.size
