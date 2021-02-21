@@ -56,6 +56,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
 
     //Indicator for viewpager 2
     implementation 'me.relex:circleindicator:2.1.6'
