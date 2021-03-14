@@ -42,10 +42,10 @@ class RecipesFragment : Fragment() {
     private fun applyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
 
-        queries["number"] = "50"
+        queries["number"] = "20"
         queries["apiKey"] = API_KEY
-        queries["type"] = "main course"
-        queries["diet"] = "vegan"
+        queries["type"] = "dessert"
+        queries["diet"] = ""
         queries["addRecipeInformation"] = "true"
         queries["fillIngredients"] = "true"
 

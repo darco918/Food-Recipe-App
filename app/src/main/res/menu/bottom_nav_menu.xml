@@ -3,14 +3,17 @@
 
     <item android:id="@+id/recipesFragment"
         android:title="@string/recipes_fragment"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_menu_book"/>
 
       <item android:id="@+id/favoriteRecipesFragment"
         android:title="@string/favourite_recipes_fragment"
+          android:iconTint="@color/white"
         android:icon="@drawable/ic_star"/>
 
     <item android:id="@+id/foodJokeFragment"
         android:title="@string/food_joke_fragment"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_food_joke"/>
 
 </menu>

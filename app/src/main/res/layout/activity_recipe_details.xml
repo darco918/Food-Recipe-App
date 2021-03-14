@@ -20,7 +20,7 @@
         android:id="@+id/indicator"
         android:elevation="10dp"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_height="38dp"/>
 
